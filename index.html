@@ -73,6 +73,11 @@ p{margin:0 0 1em}
 .price s{color:var(--muted)}
 .save{font-size:.8rem;font-weight:600;color:var(--wa);background:#e5f6ec;padding:3px 9px;border-radius:999px}
 .fine{font-size:.8rem;color:var(--muted);margin-bottom:16px}
+.ship{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.ship div{display:flex;gap:12px;align-items:flex-start;font-size:.9rem;line-height:1.4}
+.ship svg{width:26px;height:26px;flex:none;fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ship b{display:block;margin-top:2px}
+.ship .blue{color:var(--blue)}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;counter-reset:s}
 .step{background:#fff;border:1px solid var(--gray-2);border-radius:var(--radius);padding:26px}
 .step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-weight:600;margin-bottom:14px}
@@ -237,7 +242,13 @@ PRODUCTS.forEach(p => {
     <div class="chips">${p.sizes.map((s, i) => `<button class="chip" aria-pressed="${i === 0}" data-i="${i}">${s.label}</button>`).join('')}</div>
     <div class="price"></div>
     <p class="fine">Precio de Black Friday por encargo. Se reserva con adelanto.</p>
-    <a class="btn btn-wa" target="_blank" rel="noopener">Pedir por WhatsApp</a>`;
+    <a class="btn btn-wa" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+    <div class="ship">
+      <div><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span>Reservá hoy. Entrega en persona:<b>En la <span class="blue">GAM</span>, en unas 2 horas</b>cuando llega tu iPhone</span></div>
+      <div><svg viewBox="0 0 24 24"><path d="M2 6h11v10H2z"/><path d="M13 9h4l3 3v4h-7"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>
+        <span>Fuera de la GAM:<b>Envío a todo el país</b>se coordina por WhatsApp</span></div>
+    </div>`;
   const priceEl = el.querySelector('.price'), btn = el.querySelector('.btn-wa');
   const render = () => {
     const s = state.size;
